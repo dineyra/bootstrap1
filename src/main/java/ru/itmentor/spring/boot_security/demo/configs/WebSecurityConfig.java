@@ -39,10 +39,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
     }
 
-//    @Bean
-//    protected BCryptPasswordEncoder bCryptPasswordEncoder() {
-//        return new BCryptPasswordEncoder(12);
-//    }
 
     @Bean
     protected DaoAuthenticationProvider daoAuthenticationProvider() {

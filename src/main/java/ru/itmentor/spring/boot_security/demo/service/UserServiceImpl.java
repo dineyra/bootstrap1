@@ -1,6 +1,7 @@
 package ru.itmentor.spring.boot_security.demo.service;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,46 +23,54 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
-    @Transactional(readOnly = false)
+
+    @Transactional(readOnly = true)
     public User getUserByEmail(String email) {
 
         return userDao.getUserByEmail(email);
     }
 
     @Override
+    @Transactional
     public void addUser(User user) {
         userDao.addUser(user);
     }
 
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public User getUserById(Long id) {
 
         return userDao.getUserById(id);
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public void updateUser(User user) {
         userDao.updateUser(user);
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public void removeUserById(Long id) {
 
         userDao.removeUserById(id);
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public List<User> listUsers() {
 
         return userDao.listUsers();
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userDao.getUserByEmail(email);
+//        return userDao.getUserByEmail(email);
+        User user = userDao.getUserByEmail(email);
+        user.getAuthorities().size();
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("User '%s' not found", email));
+        }
+        return user.fromUser();
     }
 }
