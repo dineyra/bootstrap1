@@ -40,17 +40,37 @@
 
 
 <div class="row mt-5">
+    <!--    <div class="col-2 fixed-left">-->
+    <!--        <div th:fragment="leftmenu">-->
+    <!--            <ul class="nav flex-sm-column">-->
+    <!--                <li class="nav-item" sec:authorize="hasRole('ADMIN')">-->
+    <!--                    <a class="nav-link"-->
+    <!--                       th:classappend="${#httpServletRequest.getRequestURI().equals('/user') ? 'active bg-primary text-white' : ''}"-->
+    <!--                       href="#" th:href="@{/user}">User</a>-->
+    <!--                </li>-->
+    <!--            </ul>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
     <div class="col-2 fixed-left">
-        <div th:fragment="leftmenu">
+        <div th:fragment="leftMenu">
+
             <ul class="nav flex-sm-column">
-                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <li class="nav-item">
                     <a class="nav-link"
-                       th:classappend="${#httpServletRequest.getRequestURI().equals('/user') ? 'active bg-primary text-white' : ''}"
-                       href="#" th:href="@{/user}">User</a>
+                       th:classappend="${#httpServletRequest.getRequestURI().equals('/admin/') ? 'active bg-primary text-white' : ''}"
+                       href="#" th:href="@{/admin/}" aria-current="page">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classappend="${#httpServletRequest.getRequestURI().equals('/user/') ? 'active bg-primary text-white' : ''}"
+                       href="#" th:href="@{/user/}">User</a>
                 </li>
             </ul>
         </div>
     </div>
+
+
     <div class="col-10 bg-light">
 
         <h1>User Information-page</h1>

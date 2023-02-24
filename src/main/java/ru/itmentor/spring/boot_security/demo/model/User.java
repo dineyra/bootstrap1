@@ -28,6 +28,9 @@ public class User implements UserDetails {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "lastname")
     private String lastName;
 
@@ -42,18 +45,19 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
-    @JoinTable(name = "users_role",
+    @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     @ToString.Exclude
     private Set<Role> roles = new HashSet<>();
 
-    public User(String name, String lastName, Long age, String email, String password) {
+    public User(String name, String lastName, Long age, String email, String password, String username) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
         this.password = password;
+        this.username = username;
     }
 
     @Override

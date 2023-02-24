@@ -59,7 +59,7 @@
                 <li class="nav-item">
                     <a class="nav-link"
                        th:classappend="${#httpServletRequest.getRequestURI().equals('/user/') ? 'active bg-primary text-white' : ''}"
-                       href="#" th:href="@{/user}">User</a>
+                       href="#" th:href="@{/user/}">User</a>
                 </li>
             </ul>
         </div>
@@ -105,7 +105,7 @@
                             <td th:text="${msg.getLastName()}">LastName</td>
                             <td th:text="${msg.getAge()}">Age</td>
                             <td th:text="${msg.getEmail()}">Email</td>
-                            <td><span th:each="roles : ${msg.getRoles()}" th:text="${roles} + ' '"></span>Roles</td>
+                            <td><span th:each="roles : ${msg.getRoles()}" th:text="${roles} + ' '"></span></td>
 
 
 
