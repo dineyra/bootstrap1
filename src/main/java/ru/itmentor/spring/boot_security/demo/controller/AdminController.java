@@ -23,7 +23,6 @@ public class AdminController {
 
     private final UserService userService;
     private final RoleService roleService;
-//    private final String emptyRole = "NOT_CHANGED";
 
 
     @GetMapping
@@ -71,5 +70,4 @@ public class AdminController {
         userService.removeUserById(id);
         return "redirect:/admin/";
     }
-
 }
